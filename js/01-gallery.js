@@ -29,14 +29,14 @@ function showLargeImg(event) {
 
     if (!validateEventNode(event)) return;
 
-    createLargeImgMarkup();
+    createLargeImg();
 }
 
 function validateEventNode(event) {
     return event.target.nodeName === 'IMG' ? true : false;
 }
 
-function createLargeImgMarkup() {
+function createLargeImg() {
     const instance = basicLightbox.create(`<img
                                             class="gallery__image"
                                             src="${event.target.dataset.source}"
