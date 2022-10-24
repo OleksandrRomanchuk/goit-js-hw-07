@@ -29,24 +29,24 @@ function showLargeImg(event) {
 
     if (!validateEventNode(event)) return;
 
-    createLargeImgMarkup(event);
+    createLargeImgMarkup();
 }
 
 function validateEventNode(event) {
     return event.target.nodeName === 'IMG' ? true : false;
 }
 
-function createLargeImgMarkup(data) {
+function createLargeImgMarkup() {
     const instance = basicLightbox.create(`<img
                                             class="gallery__image"
                                             src="${event.target.dataset.source}"
                                             alt="${event.target.alt}"
                                             />`);
 
-    instance.show(closeWhenEscapePressed(instance));
+    instance.show(closeWhenEscapeBtnPressed(instance));
 }
 
-function closeWhenEscapePressed(el) {
+function closeWhenEscapeBtnPressed(el) {
     document.addEventListener('keydown', event => {
         return event.code === 'Escape' ? el.close() : false;
     });
