@@ -5,29 +5,20 @@ const galleryContainer = document.querySelector('.gallery');
 
 galleryContainer.innerHTML = createGalleryMarkup(galleryItems);
 
-galleryContainer.addEventListener('click', showLargeImg);
-
-const lightbox = new SimpleLightbox('.gallery a', {
+const lightbox = new SimpleLightbox('.gallery > li > a', {
     captionsData: 'alt',
+    captionPosition: 'bottom',
     captionDelay: 250,
 });
 
 function createGalleryMarkup(data) {
     return data
         .map(({ preview, original, description }) => {
-            return `<a class="gallery__item" href="${original}">
-                        <img class="gallery__image" src="${preview}" alt="${description}" />
-                    </a>`;
+            return `<li>
+                        <a class="gallery__item" href="${original}">
+                            <img class="gallery__image" src="${preview}" alt="${description}" />
+                        </a>
+                    </li>`;
         })
         .join('');
-}
-
-function showLargeImg(event) {
-    event.preventDefault();
-
-    if (!validateEventNode(event)) return;
-}
-
-function validateEventNode(event) {
-    return event.target.nodeName === 'IMG' ? true : false;
 }
