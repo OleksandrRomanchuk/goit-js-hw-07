@@ -46,17 +46,13 @@ function createLargeImg() {
                                             />`,
             {
                 onShow: instance => closeWhenEscapeBtnPressed(instance),
-                onClose: instance => {
-                    console.log(galleryContainer);
-                    galleryContainer.addEventListener('click', showLargeImg);
-                },
             }
         )
         .show();
 }
 
 function closeWhenEscapeBtnPressed(el) {
-    document.addEventListener('keydown', event => {
+    window.addEventListener('keydown', event => {
         return event.code === 'Escape' ? el.close() : false;
     });
 }
