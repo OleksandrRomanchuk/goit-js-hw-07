@@ -11,15 +11,15 @@ function createGalleryMarkup(data) {
     return data
         .map(({ preview, original, description }) => {
             return `<div class="gallery__item">
-            <a class="gallery__link" href="${original}">
-                <img
-                class="gallery__image"
-                src="${preview}"
-                data-source="${original}"
-                alt="${description}"
-                />
-            </a>
-        </div>`;
+                        <a class="gallery__link" href="${original}">
+                            <img
+                            class="gallery__image"
+                            src="${preview}"
+                            data-source="${original}"
+                            alt="${description}"
+                            />
+                        </a>
+                    </div>`;
         })
         .join('');
 }
@@ -37,13 +37,22 @@ function validateEventNode(event) {
 }
 
 function createLargeImg() {
-    const instance = basicLightbox.create(`<img
+    const instance = basicLightbox
+        .create(
+            `<img
                                             class="gallery__image"
                                             src="${event.target.dataset.source}"
                                             alt="${event.target.alt}"
-                                            />`);
-
-    instance.show(closeWhenEscapeBtnPressed(instance));
+                                            />`,
+            {
+                onShow: instance => closeWhenEscapeBtnPressed(instance),
+                onClose: instance => {
+                    console.log(galleryContainer);
+                    galleryContainer.addEventListener('click', showLargeImg);
+                },
+            }
+        )
+        .show();
 }
 
 function closeWhenEscapeBtnPressed(el) {
