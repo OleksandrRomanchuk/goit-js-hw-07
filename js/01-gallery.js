@@ -40,10 +40,10 @@ function createLargeImg() {
     const instance = basicLightbox
         .create(
             `<img
-                                            class="gallery__image"
-                                            src="${event.target.dataset.source}"
-                                            alt="${event.target.alt}"
-                                            />`,
+                class="gallery__image"
+                src="${event.target.dataset.source}"
+                alt="${event.target.alt}"
+                />`,
             {
                 onShow: instance => closeWhenEscapeBtnPressed(instance),
             }
